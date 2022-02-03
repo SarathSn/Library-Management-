@@ -1,0 +1,31 @@
+<div><form class="form-inline my-2 my-lg-0">
+    <input type="search" (ngModelChange)="searchBook(key.value)" #key="ngModel" ngModel
+     name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search Books..." required ng-reflect-requires style="margin-left: 126%;">
+     <div class="alert alert-danger" *ngIf="key.value === -1"> <p>No Records found</p></div>
+  </form></div>
+
+<div  class="container table-responsive py-5"> 
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Book Name</th>
+        <th scope="col">Book Author</th>
+        <th scope="col">Book Genre</th>
+        <th scope="col">Isbn</th>
+        <th scope="col">Available Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{book.bookId}}</td>
+        <td>{{book.bookName}}</td>
+        <td>{{book.bookAuthor}}</td>
+        <td>{{book.bookGenre}}</td>
+        <td>{{book.isbn}}</td>
+        <td>{{book.availableQuantity}}</td>
+      </tr>
+      <tr>
+    </tbody>
+  </table>
+  </div>

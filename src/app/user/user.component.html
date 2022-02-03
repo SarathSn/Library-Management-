@@ -1,0 +1,14 @@
+<form #adduser="ngForm" (ngSubmit)="onAddUser(adduser)"> 
+    <div class="form-group">
+       <label for="name">User Name</label>
+       <input type="text" pattern="[A-Za-z]" ngModel name="userName" #userName="ngModel" ngModel pattern="[a-zA-Z0-9]*" class="form-control" id="userName"  placeholder=" User Name" required>
+       <div class="alert alert-danger" *ngIf="userName.touched && !userName.valid">Invalid Input</div>
+    </div>
+    <div class="form-group">
+       <label for="name">Book Author</label>
+       <input type="text" ngModel name="phoneNumber"  #userNumber="ngModel" class="form-control" id="phoneNumber" ngModel pattern="[0-9]{10}" placeholder="Phone number" required>
+       <div class="alert alert-danger" *ngIf="userNumber.touched && !userNumber.valid">Invalid Input</div>
+    </div>
+    <div class ="modal-footer">
+        <button [disabled]="adduser.invalid" type="submit" class="btn btn-primary" >Save changes</button> 
+    </div>
