@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../book';
+import { Book, BookDetails } from '../book';
 import { BookService } from '../book.service';
 
 @Component({
@@ -10,11 +10,12 @@ import { BookService } from '../book.service';
 })
 export class BooktableComponent implements OnInit {
   public books: Book[] = [];
+  public details:BookDetails[]=[];
   
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
-   this.getBooks();
+  this.getBooks();
   }
 
   public getBooks():void{
@@ -28,6 +29,22 @@ export class BooktableComponent implements OnInit {
 
     );
   }
+
+  public bookDetail(bookid:number):void{
+   // console.log(JSON.stringify(BookDetails[]));
+    this.bookService.bookDetails(bookid).subscribe(
+          (response : BookDetails[]) =>{
+        this.details=response;
+        console.log("hhhhhhhhhhh")
+      },
+      (error : HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+      console.log("howwwwwww");
+  }
+
+
   public searchBook(key:string): void{
     const results: Book[]=[];
     
@@ -41,5 +58,19 @@ export class BooktableComponent implements OnInit {
     if (results.length === 0 || !key) {
       this.getBooks();
     }
+  }
+
+  public onOpenModal(book: Book, mode: string): void {
+    const container= document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'View') {
+      button.setAttribute('data-target', '#addissueModal');
+    }
+    container!.appendChild(button);
+    
+    button.click();
   }
 }

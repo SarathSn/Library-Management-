@@ -13,3 +13,11 @@ export interface User{
     userName:String
     phoneNumber:number
 }
+
+export interface BookDetails{
+
+    bookName:String
+    availableQuantity:number
+    userName:String
+    returnDate:Date
+}

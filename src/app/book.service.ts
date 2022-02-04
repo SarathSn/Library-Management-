@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Book, User } from './book';
+import { Book, BookDetails, User } from './book';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -32,5 +32,10 @@ export class BookService {
   public addUser(user:User): Observable<User>{
     console.log("error")
     return this.http.post<User>(`${this.apiServerUrl}/Book/addUser`,user);
+  }
+
+  public bookDetails(bookId:number): Observable<BookDetails[]>{
+
+    return this.http.get<BookDetails[]>(`${this.apiServerUrl}/Book/bookDetails/${bookId}`);
   }
 }

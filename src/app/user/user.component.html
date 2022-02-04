@@ -1,7 +1,7 @@
 <form #adduser="ngForm" (ngSubmit)="onAddUser(adduser)"> 
     <div class="form-group">
        <label for="name">User Name</label>
-       <input type="text" pattern="[A-Za-z]" ngModel name="userName" #userName="ngModel" ngModel pattern="[a-zA-Z0-9]*" class="form-control" id="userName"  placeholder=" User Name" required>
+       <input type="text" pattern="[A-Za-z]" ngModel name="userName" #userName="ngModel" ngModel pattern="[a-zA-Z0-9\s]*" class="form-control" id="userName"  placeholder=" User Name" required>
        <div class="alert alert-danger" *ngIf="userName.touched && !userName.valid">Invalid Input</div>
     </div>
     <div class="form-group">

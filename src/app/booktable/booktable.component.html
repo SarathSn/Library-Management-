@@ -1,7 +1,12 @@
 <div><form class="form-inline my-2 my-lg-0">
     <input type="search" (ngModelChange)="searchBook(key.value)" #key="ngModel" ngModel
      name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search Books..." required ng-reflect-requires style="margin-left: 126%;">
-     <div class="alert alert-danger" *ngIf="key.value === -1"> <p>No Records found</p></div>
+     <div *ngIf="key.value === -1" class="col-lg-12 col-md-12 col-xl-12">
+      <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading"></h4>
+        <p>No User has taken the book</p>
+      </div>
+      </div>
   </form></div>
 
 <div  class="container table-responsive py-5"> 
@@ -14,6 +19,7 @@
         <th scope="col">Book Genre</th>
         <th scope="col">Isbn</th>
         <th scope="col">Available Quantity</th>
+        <th scope="col">View Details</th>
       </tr>
     </thead>
     <tbody>
@@ -24,8 +30,57 @@
         <td>{{book.bookGenre}}</td>
         <td>{{book.isbn}}</td>
         <td>{{book.availableQuantity}}</td>
+        <td> <a (click)="onOpenModal(null!, 'View')" (click)="bookDetail(book.bookId)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">View</a></td>
       </tr>
       <tr>
     </tbody>
   </table>
   </div>
+  
+
+
+
+  <div class="modal fade" id="addissueModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addBookModalLabel">Add Book</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+          <div  class="container table-responsive py-5"> 
+            <table class="table table-bordered table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Book Name</th>
+                  <th scope="col">Available Quantity</th>
+                  <th scope="col">User Name</th>
+                  <th scope="col">Return Date</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let detail of details">
+                <div class="alert alert-danger" *ngIf="details?.length === 0">No Records found</div>
+                <td>{{detail.bookName}}</td>
+                <td>{{detail.availableQuantity}}</td>
+                <td>{{detail.userName}}</td>
+                <td>{{detail.returnDate}}</td>
+              </tr>
+              <tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div *ngIf="details?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+            <div class="alert alert-info" role="alert">
+              <h4 class="alert-heading"></h4>
+              <p>No User has taken the book</p>
+            </div>
+            </div>
+         </div>
+      </div>
+      </div>
+
+      

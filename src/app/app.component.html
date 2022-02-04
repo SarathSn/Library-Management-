@@ -86,26 +86,31 @@
            <form #addForm="ngForm" (ngSubmit)="onAddBook(addForm)"> 
           <div class="form-group">
              <label for="name">Book Name</label>
-             <input type="text" ngModel name="bookName" class="form-control" id="bookName" placeholder=" Book Name" required>
-          </div>
+             <input type="text" ngModel name="bookName" #bookName="ngModel" ngModel pattern="[a-zA-Z0-9\s]*" class="form-control" id="bookName" placeholder=" Book Name" required>
+             <!-- <div class="alert alert-danger" *ngIf="bookName.touched && !bookName.valid">Invalid Input</div>-->
+          </div> 
           <div class="form-group">
              <label for="name">Book Author</label>
-             <input type="text" ngModel name="bookAuthor" class="form-control" id="bookAuthor" placeholder="Book author" required>
+             <input type="text" ngModel name="bookAuthor" #bookAuthor="ngModel" ngModel pattern="[a-zA-Z0-9\s]*" class="form-control" id="bookAuthor" placeholder="Book author" required>
+             <div class="alert alert-danger" *ngIf="bookAuthor.touched && !bookAuthor.valid">Invalid Input</div>
           </div>
           <div class="form-group">
              <label for="name">Book Genre</label>
-             <input type="text" ngModel name="bookGenre" class="form-control" id="bookGenre" placeholder="book genre" required>
+             <input type="text" ngModel name="bookGenre" #bookGenre="ngModel" ngModel pattern="[a-zA-Z0-9\s]*" class="form-control" id="bookGenre" placeholder="book genre" required>
+             <div class="alert alert-danger" *ngIf="bookGenre.touched && !bookGenre.valid">Invalid Input</div>
           </div>
           <div class="form-group">
              <label for="name">Isbn</label>
-             <input type="text" ngModel name="isbn" class="form-control" id="isbn" placeholder="isbn" required>
+             <input type="text" ngModel name="isbn" #isbn="ngModel" ngModel pattern="[a-zA-Z0-9\s]*" class="form-control" id="isbn" placeholder="isbn" required>
+             <div class="alert alert-danger" *ngIf="isbn.touched && !isbn.valid">Invalid Input</div>
           </div>
           <div class="form-group">
              <label for="number">Available Quantity</label>
-             <input type="number" ngModel name="availableQuantity" class="form-control" id="availableQuantity" placeholder="Quantity" required>
+             <input type="number" ngModel name="availableQuantity" #quantity="ngModel" ngModel pattern="[0-9]"class="form-control" id="availableQuantity" placeholder="Quantity" required>
+             <div class="alert alert-danger" *ngIf="quantity.touched && !quantity.valid">Invalid Input</div>
           </div>
           <div class="modal-footer">
-             <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+             <button type="button" id="add-employee-form" onclick="this.form.reset()" class="btn btn-secondary"  data-dismiss="modal">Close</button>
 
               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button> 
           </div>

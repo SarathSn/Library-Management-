@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
 import { Book } from './book';
 import { BookService } from './book.service';
 
@@ -13,6 +13,7 @@ import { BookService } from './book.service';
 export class AppComponent implements OnInit {
   public books: Book[] = [];
   title: any;
+ 
 
   constructor(private bookService: BookService ) { }
 
@@ -31,10 +32,13 @@ export class AppComponent implements OnInit {
 
     );
   }
+  
+   // document.querySelector('form')!.reset();
+  
 
   public onAddBook(addForm: NgForm): void {
    var frm= document.getElementById('add-employee-form')!.click();
-   
+  
     this.bookService.addBook(addForm.value).subscribe(
       (response: Book) => {
         this.getBooks();
